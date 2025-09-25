@@ -1,0 +1,324 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML</title>
+    <!-- HTML -->
+    <!-- Custom Styles --><!--
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <p>Nothing to see here...</p>
+  <!-- Project --
+  <script src="main.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+<title> ia - bius </title>
+<style>
+	
+				  /* ====== RESET Y BASE ====== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+	
+  html, body { height: 90vh; font-family: cursive; background: skyblue; }
+
+  /* ====== LAYOUT DESKTOP ====== */
+  .layout {
+    background: linear-gradient(skyblue 0%, white 100%);
+    display: grid;
+    grid-template-columns: 25% 1fr 25%; 
+  				margin-top: 9vh;
+    height: 80vh;
+    border-radius: 2px;
+  }
+  aside, main {
+    overflow-y: auto;
+    padding: 8px;
+    border-radius: 3px;
+  }
+  aside { background: linear-gradient(120deg, #white 0%, cyan 100%); border-radius: 2px 2px; }
+  main { background: linear-gradient(120deg, #white 0%, cyan 100%); border-radius: 5px 2px; } 
+
+  /* ====== NAVBAR SUPERIOR ====== */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 8vh;
+    background: linear-gradient(90deg, skyblue 0%, blue 100%);
+    color: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px solid black;
+    z-index: 1000;
+    margin: 3px solid black;
+    border-radius: 2px;
+    border: solid black;
+    box-shadow: 2px 5px ;
+  }
+  .navbar h1 { font-size: 1.2rem; color: white; }
+  .navbar a { color: white; font-size: 1.5rem; font-family: Robot /*(Arial, Helvetica, sans-serif)*/ }
+  .navbar button {
+    background: linear-gradient(skyblue 0%, white);
+ /*   background: rgba(255,255,255,0.2);*/
+    border: ;
+    padding: 5px 10px;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+  				width: 10vh; height: 80%;
+  }
+
+  /* ====== MOBILE ====== */
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 0.7fr auto;
+    }
+    aside {
+      display: none;
+      /* ocultar sidebars por defecto */
+    }
+    aside.active {
+      display: block;
+      position: fixed;
+      top: 80px;
+      bottom: 0;
+      width: 80%;
+      z-index: 999;
+    }
+    aside.left { left: 0; }
+    aside.right { right: 0; }
+  }
+
+  /* ====== IFRAMES ====== */
+  iframe {
+    width: 100%;
+    height: calc(100vh - 70px);
+    max-height: 90%;
+    border: none;
+    background: white;
+  }
+ }
+</style>
+  <style>
+  /*  body {
+      font-family: Arial, sans-serif, robot;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }/*/
+    .chat-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 5px auto;
+      background: white;
+      border-radius: 2px;
+      box-shadow: 0 02 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      padding: 2px;
+      border-bottom: 2px solid #ccc;
+    }
+    .message {
+      margin-bottom: 15px;
+    }
+    .message.user {
+      text-align: right;
+      /*color: #007bff;*/
+    color: black;
+    border: 1px;
+    				
+    }
+    .message.bot {
+      text-align: left;
+      /*color: #333;*/
+    				color: blue;
+    }
+    .input-area {
+      display: flex;
+      padding: 10px;
+    }
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 4px;
+      max-width: 70%;
+    }
+    .input-area button {
+      padding: 1px 2px;
+      margin-left: 1px;
+      background: floralwhite;
+      color: black;
+      border: solid black;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- NAV BAR -->
+				<div class="navbar">
+  <button onclick="toggleSidebar('left')">☰</button>
+   <a href="b-i-u-s.github.io/ia/"> IA-BIUS</a>
+  <button onclick="toggleSidebar('right')">☰</button>
+</div>
+  
+  <!--    LAYOUT MENU -->  
+				<div class="layout" style="padding-top:80px;">
+					
+  <aside class="left">
+	  
+    <a href="index.html">pag principal</a>
+    <div>
+	<div style="width: 100%; height: 400px">
+	  <div class="chat-container">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="input-area">
+     <input type="text" id="userInput" placeholder="Escribe tu mensaje..." />
+																				  
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>  	
+	</div>	
+    <p> atencion! los chats escritos no se guardarán, es mejor que los respaldes en algun ligar aparte mientras la beta aun siga. </p>	
+	<!--  <iframe src="blue-forest-8/ia/index.html">ia</iframe>-->
+  </div>
+  
+  </aside>
+  <main>
+    
+    <h2> B.I.U.S.  </h2>
+    <h3> Bio. Intelligence. Un-. Soul</h3>
+  				<!--MANUU CONTENIDO 
+    <iframe src="archivos de texto y Solic.html" style="width:50vh;"></iframe>-->
+    
+    
+    <!-- IA CONTAINER ---->		
+  				
+  				
+  </main>
+  <aside class="right">
+          <!--  <iframe src="" style="width:50vh;"></iframe>
+    -->
+  </aside>
+	</div>		
+	
+	<script>
+  // Lógica para mostrar/ocultar sidebars en móvil
+  function toggleSidebar(side) {
+    const aside = document.querySelector(`aside.${side}`);
+    aside.classList.toggle('active');
+  }
+
+  // Centrar contenido aunque haya zoom
+  window.addEventListener('resize', centerLayout);
+  window.addEventListener('load', centerLayout);
+  function centerLayout() {
+    document.body.style.display = 'flex';
+    document.body.style.justifyContent = 'center';
+  }
+
+
+
+const API_KEY = "AIzaSyDSIy5m7mTXlMMR_OOdCu2Af_EwoCd124w"; // Replace with your Gemini API Key
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+const chatBox = document.getElementById("chatBox");
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const userText = input.value.trim();
+  if (!userText) return;
+  
+  addMessage("user", userText);
+  input.value = "";
+  getBotResponse(userText);
+}
+
+function addMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.className = `message ${sender}`;
+  
+  if (sender === "bot" && text.includes("```")) {
+    const parsed = parseCode(text);
+    msg.innerHTML = parsed;
+  } else {
+    msg.innerText = text;
+  }
+  
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function parseCode(text) {
+  return text.replace(/```(\w+)?([\s\S]*?)```/g, (_, lang, code) => {
+    return `<pre><code>${escapeHtml(code.trim())}</code></pre>`;
+  });
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+async function getBotResponse(prompt) {
+  const thinking = document.createElement("div");
+  thinking.className = "message bot";
+  thinking.innerText = "Typing...";
+  chatBox.appendChild(thinking);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+    
+    const data = await res.json();
+    const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "❌ No response.";
+    thinking.remove();
+    addMessage("bot", aiText);
+  } catch (err) {
+    thinking.remove();
+    addMessage("bot", "⚠️ Error getting response.");
+  }
+}
+
+// Voice input
+function startVoice() {
+  const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-US";
+  recognition.start();
+  recognition.onresult = (event) => {
+    document.getElementById("userInput").value = event.results[0][0].transcript;
+  };
+  recognition.onerror = (event) => {
+    alert("Voice input error: " + event.error);
+  };
+}
+
+					
+				</script>   
+
+
+			
+</body>
+</html>
